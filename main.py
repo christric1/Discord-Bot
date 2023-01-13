@@ -7,18 +7,19 @@ import json
 
 
 # client 是我們與 Discord 連結的橋樑，intents 是我們要求的權限
-intents = discord.Intents.all()
+intents = discord.Intents.default()
+intents.message_content = True
 client = commands.Bot(command_prefix='$', intents=intents)
 
 # 馬哥吃草
 @client.command(name='馬哥')
 async def _list(ctx):
-    await ctx.channel.send("馬哥吃草")
+    await ctx.send("馬哥吃草")
 
 # 隨機本子
 @client.command()
 async def random(ctx):
-    await ctx.channel.send("https://nhentai.net/random")
+    await ctx.send("https://nhentai.net/random")
 
 # 唬爛造句
 @client.command()
@@ -26,9 +27,9 @@ async def hulan(ctx, topic, len):
     try:
         r = requests.get("https://fastapi-selenium-production-8ccc.up.railway.app/hulan?topic={topic}&len={len}")
         data = json.loads(r.text)
-        await ctx.channel.send(data['text'])
+        await ctx.send(data['text'])
     except:
-        await ctx.channel.send("something went wrong.")
+        await ctx.send("something went wrong.")
 
 @client.event
 async def on_ready():
@@ -46,5 +47,7 @@ async def on_message(message):
     for num in numbers:
         if len(num) == 6:
             await message.channel.send('https://nhentai.net/g/' + num)
+
+    await client.process_commands(message)
 
 client.run(os.environ["DISCORD_TOKEN"]) 
