@@ -23,9 +23,9 @@ async def random(ctx):
 
 # 唬爛造句
 @client.command()
-async def hulan(ctx, topic, len):
+async def hulan(ctx, topic="馬哥", len="100"):
     try:
-        r = requests.get("https://fastapi-selenium-production-8ccc.up.railway.app/hulan?topic={topic}&len={len}")
+        r = requests.get(f"https://fastapi-selenium-production-8ccc.up.railway.app/hulan?topic={topic}&len={len}")
         data = json.loads(r.text)
         await ctx.send(data['text'])
     except:
