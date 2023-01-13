@@ -14,12 +14,12 @@ client = commands.Bot(command_prefix='$', intents=intents)
 # 馬哥吃草
 @client.command(name='馬哥')
 async def _list(ctx):
-    await ctx.send("馬哥吃草")
+    await ctx.channel.send("馬哥吃草")
 
 # 隨機本子
 @client.command()
 async def random(ctx):
-    await ctx.send("https://nhentai.net/random")
+    await ctx.channel.send("https://nhentai.net/random")
 
 # 唬爛造句
 @client.command()
@@ -27,9 +27,9 @@ async def hulan(ctx, topic, len):
     try:
         r = requests.get("https://fastapi-selenium-production-8ccc.up.railway.app/hulan?topic={topic}&len={len}")
         data = json.loads(r.text)
-        await ctx.send(data['text'])
+        await ctx.channel.send(data['text'])
     except:
-        await ctx.send("something went wrong.")
+        await ctx.channel.send("something went wrong.")
 
 @client.event
 async def on_ready():
