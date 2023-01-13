@@ -7,8 +7,7 @@ import json
 
 
 # client 是我們與 Discord 連結的橋樑，intents 是我們要求的權限
-intents = discord.Intents.default()
-intents.message_content = True
+intents = discord.Intents.all()
 client = commands.Bot(command_prefix='$', intents=intents)
 
 # 馬哥吃草
