@@ -39,10 +39,10 @@ async def on_ready():
 @client.event
 async def on_message(message):
     # 排除自己的訊息，避免陷入無限循環
-    if message.author == client.user:
+    if message.author == client.user or message.content.startswith("https"):
         return
 
-    # 找所有數字
+    # 找所有數字  
     numbers = re.findall(r"\d+", message.content)
     for num in numbers:
         if len(num) == 6:
