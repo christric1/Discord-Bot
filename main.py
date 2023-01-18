@@ -11,6 +11,9 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = commands.Bot(command_prefix='$', intents=intents)
 
+# root website
+root = "https://fastapi-selenium-production-8ccc.up.railway.app/"
+
 # 馬哥吃草
 @client.command(name='馬哥')
 async def _list(ctx):
@@ -25,9 +28,19 @@ async def random(ctx):
 @client.command()
 async def hulan(ctx, topic="馬哥", len="100"):
     try:
-        r = requests.get(f"https://fastapi-selenium-production-8ccc.up.railway.app/hulan?topic={topic}&len={len}")
+        r = requests.get(root + f"hulan?topic={topic}&len={len}")
         data = json.loads(r.text)
         await ctx.send(data['text'])
+    except:
+        await ctx.send("something went wrong.")
+
+# 抽神籤
+@client.command()
+async def drawLots(ctx):
+    try:
+        r = requests.get(root + "drawLots")
+        data = json.loads(r.text)
+        await ctx.send(data['src'])
     except:
         await ctx.send("something went wrong.")
 
