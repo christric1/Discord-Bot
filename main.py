@@ -44,6 +44,20 @@ async def drawLots(ctx):
     except:
         await ctx.send("something went wrong.")
 
+# 想澀澀
+@client.command()
+async def sehseh(ctx, name="紅村"):
+    try:
+        r = requests.get(root + f"getHentai?name={name}")
+        data = json.loads(r.text)
+
+        embed=discord.Embed(title=name, color=0x118845)
+        for i in data:
+            embed.add_field(name=i["title"], value=i["src"], inline=False)
+        await ctx.send(embed=embed)
+    except:
+        await ctx.send("something went wrong.")
+
 @client.event
 async def on_ready():
     print("Bot in ready")
