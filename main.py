@@ -52,8 +52,8 @@ async def sehseh(ctx, name="紅村"):
         data = json.loads(r.text)
 
         embed=discord.Embed(title=name, color=0x118845)
-        for i in data:
-            embed.add_field(name=i["title"], value=i["src"], inline=False)
+        for index, i in enumerate(data):
+            embed.add_field(name=str(index+1)+". "+i["title"], value=i["src"], inline=False)
         await ctx.send(embed=embed)
     except:
         await ctx.send("something went wrong.")
