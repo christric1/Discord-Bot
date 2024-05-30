@@ -19,7 +19,10 @@ class Update(commands.Cog):
 
 **113/2/3**
 - 增加洞六洞洞起床
-- 增加對錶報時間```"""
+- 增加對錶報時間
+
+**113/5/31**
+- 增加搜圖APP```"""
 
         await ctx.send(update_list_str)
 

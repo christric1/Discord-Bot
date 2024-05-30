@@ -10,6 +10,7 @@ from cogs.context_menu import c_fun
 
 # client 是我們與 Discord 連結的橋樑，intents 是我們要求的權限
 intents = discord.Intents.default()
+intents.members = True
 intents.message_content = True
 client = commands.Bot(command_prefix=settings["prefix"], intents=intents)
 

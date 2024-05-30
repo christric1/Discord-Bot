@@ -18,7 +18,7 @@ class CFun(commands.Cog):
         )
         self.bot.tree.add_command(self.ctx_menu)
 
-    async def quote(self, interaction: discord.Interaction, message: discord.Message):
+    async def quote(self, interaction: discord.Interaction, message: discord.Message) -> None:
         if message.attachments:
             for attachment in message.attachments:
                 if attachment.content_type.startswith('image/'):
