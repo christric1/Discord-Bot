@@ -3,8 +3,10 @@ from discord import app_commands
 from discord.ext import commands
 
 import requests
+from requests.exceptions import RequestException
 import json
 from config import settings
+from urllib.parse import quote
 
 
 class CFun(commands.Cog):
@@ -22,8 +24,14 @@ class CFun(commands.Cog):
         if message.attachments:
             for attachment in message.attachments:
                 if attachment.content_type.startswith('image/'):
-                    r = requests.get(settings["root"] + f"getImageHentai?url={attachment.url}")
-                    data = json.loads(r.text)
+                    encoded_url = quote(attachment.url, safe='') 
+                    try:
+                        r = requests.get(settings["root"] + f"getImageHentai?url={encoded_url}")
+                        data = json.loads(r.text)
+                        
+                    except RequestException as e:
+                        print(f"請求失敗: {e}")
+                        data = None
 
                     embed=discord.Embed(title="馬哥の草", color=0x118845)
                     for index, i in enumerate(data):
