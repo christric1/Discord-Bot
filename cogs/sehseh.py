@@ -12,7 +12,7 @@ class Sehseh(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def search(self, ctx, name="紅村"):
+    async def seh(self, ctx, name="紅村"):
         """搜尋本本 (紳士漫畫)"""
 
         r = requests.get(settings["root"] + f"getHentai?name={name}")
