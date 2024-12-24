@@ -40,7 +40,7 @@ class Sehseh(commands.Cog):
             return
 
         # 找所有數字
-        pattern = r'(w|n|jm)(\d{5,6})'
+        pattern = r'(w|n|jm)(\d{5,8})'
         matches = re.findall(pattern, message.content, re.I)
         for match in matches:
             prefix, num = match
