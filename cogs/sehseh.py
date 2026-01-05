@@ -11,19 +11,19 @@ class Sehseh(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    async def seh(self, ctx, name="紅村"):
-        """搜尋本本 (紳士漫畫)"""
+    # @commands.command()
+    # async def seh(self, ctx, name="紅村"):
+    #     """搜尋本本 (紳士漫畫)"""
 
-        r = requests.get(settings["root"] + f"getHentai?name={name}")
-        data = json.loads(r.text)
+    #     r = requests.get(settings["root"] + f"getHentai?name={name}")
+    #     data = json.loads(r.text)
 
-        embed=discord.Embed(title=name, color=0x118845)
-        for index, i in enumerate(data):
-            embed.add_field(name=str(index+1)+". "+i["title"], value=i["src"], inline=False)
-        embed.set_thumbnail(url="https://i.imgur.com/5cDx2fG.png")
-        embed.set_footer(text="NTRの戦士")
-        await ctx.send(embed=embed)
+    #     embed=discord.Embed(title=name, color=0x118845)
+    #     for index, i in enumerate(data):
+    #         embed.add_field(name=str(index+1)+". "+i["title"], value=i["src"], inline=False)
+    #     embed.set_thumbnail(url="https://i.imgur.com/5cDx2fG.png")
+    #     embed.set_footer(text="NTRの戦士")
+    #     await ctx.send(embed=embed)
 
     @commands.command()
     async def random(self, ctx):
